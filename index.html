@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="style.css">
+  <title>Projects Manager</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="logo.png" height="72px"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#projetos">Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#cadastro_projeto">Cadastrar projeto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#cadastro_atividade">Cadastrar atividade</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-4">
+    <h1 class="text-center" id="projetos">Projetos cadastrados</h1>
+    <div class="table-responsive mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome dos projetos</th>
+            <th>Data inicial</th>
+            <th>Data final</th>
+            <th>% Completo</th>
+            <th>Atrasado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Projeto_1</td>
+            <td>01/01/2002</td>
+            <td>15/12/2021</td>
+            <td>50%</td>
+            <td>Sim</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Projeto_2</td>
+            <td>02/02/2015</td>
+            <td>12/10/2025</td>
+            <td>100%</td>
+            <td>Sim</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section">  
+    <div class="container" id="cadastro_projeto">
+      <h1 class="mt-4">Cadastro de projetos</h1>
+      <form>
+        <div class="mb-3">
+          <label for="projectName" class="form-label">Nome do projeto</label>
+          <input type="text" class="form-control" id="projectName" required>
+        </div>
+        <div class="mb-3">
+          <label for="initialDate" class="form-label">Data inicial</label>
+          <input type="date" class="form-control" id="initialDate" required>
+        </div>
+        <div class="mb-3">
+          <label for="finalDate" class="form-label">Data final</label>
+          <input type="date" class="form-control" id="finalDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="text-center" id="atividades"> Atividades cadastradas</h1>
+    <div class="table-responsive mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID do projeto</th>
+            <th>Nome das atividades</th>
+            <th>Data inicial</th>
+            <th>Data final</th>
+            <th>% Completo</th>
+            <th>Atrasada</th>
+            <th>Finalizada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Atividade_1</td>
+            <td>01/01/2002</td>
+            <td>15/12/2021</td>
+            <td>50%</td>
+            <td>Sim</td>
+            <td>Nao</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Atividade_2</td>
+            <td>02/02/2015</td>
+            <td>12/10/2025</td>
+            <td>100%</td>
+            <td>Sim</td>
+            <td>Sim</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <h1 class="mt-4" id="cadastro_atividade">Cadastro de atividades</h1>
+      <form>
+        <div class="mb-3">
+          <label for="projectSelect" class="form-label">Projeto</label>
+          <select class="form-select" required>
+            <option selected>NULL_IF_NO_PROJECT</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="activityName" class="form-label">Nome da atividade</label>
+          <input type="text" class="form-control" id="activityName" required>
+        </div>
+        <div class="mb-3">
+          <label for="initialActivityDate" class="form-label">Data inicial da atividade</label>
+          <input type="date" class="form-control" id="initialActivityDate" required>
+        </div>
+        <div class="mb-3">
+          <label for="finalActivityDate" class="form-label">Data final da atividade</label>
+          <input type="date" class="form-control" id="finalActivityDate" required>
+        </div>
+        <div class="mb-3">
+          <label for="completed" class="form-label">% Completa</label>
+          <input type="number" min="0" max="100" class="form-control" id="completed" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

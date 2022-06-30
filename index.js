@@ -1,12 +1,16 @@
-const express = require('express');
-const app = express();
-const PORT = 8080;
+const express = require('express')
+const app = express()
+const path = require('path')
+const Posts = require('./app/models/Posts')
+const PORT = 8080
 
-app.use(express.json());
 
+//require("./app/routes/index")(app);
+
+/// Rotas
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/website/index.html")
-});
+    res.sendFile(path.join(__dirname, 'views', 'index.html'))
+})
 
 app.listen(
     PORT,

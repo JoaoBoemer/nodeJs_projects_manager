@@ -23,18 +23,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#projetos">Projetos</a>
-          </li>
-          <li>
-            <a class="nav-link active" aria-current="page" href="#atividades">Atividades</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#cadastro_projeto">Cadastrar projeto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#cadastro_atividade">Cadastrar atividade</a>
-          </li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#projetos">Projetos</a></li>
+          <li><a class="nav-link active" aria-current="page" href="#atividades">Atividades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cadastro_projeto">Cadastrar projeto</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cadastro_atividade">Cadastrar atividade</a></li>
         </ul>
       </div>
     </div>
@@ -79,18 +71,18 @@
   <section>
     <div class="container" id="cadastro_projeto">
       <h1 class="mt-4">Cadastro de projetos</h1>
-      <form>
+      <form action="project/add" method="post">
         <div class="mb-3">
           <label for="projectName" class="form-label">Nome do projeto</label>
           <input type="text" class="form-control" id="projectName" required>
         </div>
         <div class="mb-3">
-          <label for="initialDate" class="form-label">Data inicial</label>
-          <input type="date" class="form-control" id="initialDate" required>
+          <label for="date_from" class="form-label">Data inicial</label>
+          <input type="date" class="form-control" id="date_from" required>
         </div>
         <div class="mb-3">
-          <label for="finalDate" class="form-label">Data final</label>
-          <input type="date" class="form-control" id="finalDate" required>
+          <label for="date_to" class="form-label">Data final</label>
+          <input type="date" class="form-control" id="date_to" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -139,7 +131,7 @@
   <section>
     <div class="container">
       <h1 class="mt-4" id="cadastro_atividade">Cadastro de atividades</h1>
-      <form>
+      <form action="/test" method="get">
         <div class="mb-3">
           <label for="projectSelect" class="form-label">Projeto</label>
           <select class="form-select" required>

@@ -10,6 +10,21 @@ const Projects = db.sequelize.define('projects', {
     timestamps: false
 })
 
+const activity = db.sequelize.define('activity', {
+    name: db.Sequelize.STRING,
+    date_to: db.Sequelize.DATE,
+    date_from: db.Sequelize.DATE,
+    late: db.Sequelize.BOOLEAN,
+    finished: db.Sequelize.BOOLEAN,
+    project_id: {
+        type: db.Sequelize.INTEGER,
+        references: 'projects',
+        referencesKey: 'id'
+    }
+}, {
+    timestamps: false
+})
+
 const Usuarios = db.sequelize.define('usuarios', {
     nome: {
         type: db.Sequelize.STRING
@@ -19,6 +34,8 @@ const Usuarios = db.sequelize.define('usuarios', {
     }
 })
 
+//Projects.hasMany(activity);
+activity.sync({force:true})
 module.exports = Projects;
-//Posts.sync({force:true})
+//Projects.sync({force:true})
 //Usuarios.sync({force:true})

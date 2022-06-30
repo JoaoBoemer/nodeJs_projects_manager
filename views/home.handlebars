@@ -9,29 +9,23 @@
               <th>Nome dos projetos</th>
               <th>Data inicial</th>
               <th>Data final</th>
-              <th>% Completo</th>
+              <th>%Completo</th>
               <th>Atrasado</th>
             </tr>
           </thead>
+  {{#each posts}}
           <tbody>
             <tr>
-              <td>1</td>
-              <td>Projeto_1</td>
-              <td>01/01/2002</td>
-              <td>15/12/2021</td>
-              <td>50%</td>
-              <td>Sim</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Projeto_2</td>
-              <td>02/02/2015</td>
-              <td>12/10/2025</td>
-              <td>100%</td>
-              <td>Sim</td>
+              <td>{{id}}</td>
+              <td>{{name}}</td>
+              <td>{{date_to}}</td>
+              <td>{{date_from}}</td>
+              <td>{{done}}</td>
+              <td>{{late}}</td>
             </tr>
           </tbody>
-        </table>
+  {{/each}}
+          </table>
       </div>
     </div>
   </section>
@@ -125,3 +119,5 @@
       </form>
     </div>
   </section>
+
+  AAAAAAA

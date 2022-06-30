@@ -5,16 +5,23 @@ const Posts = require('./app/models/Posts')
 const bodyParser = require('body-parser')
 const { engine } = require('express-handlebars')
 
+
+
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.set(__dirname + '/views');
-app.engine('handlebars', engine());
-app.set('view engine','handlebars')
+app.engine('handlebars',engine({defautLayout: 'main',
+runtimeOptions: {
+          allowProtoPropertiesByDefault: true,
+          allowProtoMethodsByDefault: true,
+        }}))
+app.set('view engine', 'handlebars')
 
 /// Rotas
 app.get('/', (req, res) => {
-    res.render('home')
-    //res.sendFile(path.join(__dirname, 'views', 'index.html'))
+    Posts.findAll().then(function(posts){
+        res.render('home', {posts: posts});
+    })
 })
 
 app.get('/teste', (req,res) => {

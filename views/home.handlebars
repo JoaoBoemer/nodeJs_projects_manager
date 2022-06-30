@@ -22,6 +22,7 @@
               <td>{{date_from}}</td>
               <td>{{done}}</td>
               <td>{{late}}</td>
+              <td><a href="/project/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>
             </tr>
           </tbody>
   {{/each}}
@@ -35,15 +36,15 @@
       <form action="project/add" method="post">
         <div class="mb-3">
           <label for="projectName" class="form-label">Nome do projeto</label>
-          <input type="text" class="form-control" id="projectName" required>
+          <input type="text" class="form-control" id="projectName" name="projectName" required>
         </div>
         <div class="mb-3">
           <label for="date_from" class="form-label">Data inicial</label>
-          <input type="date" class="form-control" id="date_from" required>
+          <input type="date" class="form-control" id="date_from" name="date_from" required>
         </div>
         <div class="mb-3">
           <label for="date_to" class="form-label">Data final</label>
-          <input type="date" class="form-control" id="date_to" required>
+          <input type="date" class="form-control" id="date_to" name="date_to" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -119,5 +120,3 @@
       </form>
     </div>
   </section>
-
-  AAAAAAA

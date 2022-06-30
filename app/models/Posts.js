@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const Posts = db.sequelize.define('projects', {
+const Projects = db.sequelize.define('projects', {
     name: db.Sequelize.STRING,
     date_to: db.Sequelize.DATE,
     date_from: db.Sequelize.DATE,
@@ -19,6 +19,6 @@ const Usuarios = db.sequelize.define('usuarios', {
     }
 })
 
-module.exports = Posts;
+module.exports = Projects;
 //Posts.sync({force:true})
 //Usuarios.sync({force:true})

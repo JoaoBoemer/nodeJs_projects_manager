@@ -1,16 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const Projects = require('../app/models/Posts')
-
+const Post = require('../app/models/Posts')
 
 router.get('/', (req, res) => {
-    Projects.findAll().then(function(posts){
+    Post.Projects.findAll().then(function(projects){
+        Post.Activity.findAll().then(function(activities){
+            res.render('home', {projects: projects, activities: activities})
+        })
+        //res.render('home', {projects: projects});
+    })
+})
+/*
+router.get('/teste', (req,res) => {
+    Post.Activity.findAll().then(function(posts){
         res.render('home', {posts: posts});
     })
 })
-
+*/
 router.post('/project/add', (req,res) => {
-    Projects.create({
+    Post.Projects.create({
         name: req.body.projectName,
         date_from: req.body.date_from,
         date_to: req.body.date_to,
@@ -24,7 +32,28 @@ router.post('/project/add', (req,res) => {
 })
 
 router.get('/project/:id', (req, res) => {
-    Projects.destroy({where: {'id': req.params.id}}).then(function(){
+    Post.Projects.destroy({where: {'id': req.params.id}}).then(function(){
+        res.redirect('/');
+    }).catch(function(error){
+        res.send("Error: " + error);
+    })
+})
+
+router.post('/activity/add', (req,res) => {
+    Post.Activity.create({
+        name: req.body.activityName,
+        date_from: req.body.date_from,
+        date_to: req.body.date_to,
+        projectId: req.body.projectId,
+        finished: req.body.finished,
+        late: 0
+    }).then(function(error){
+        res.send("Error: " + error);
+    })
+})
+
+router.get('/activity/:id', (req, res) => {
+    Post.Activity.destroy({where: {'id': req.params.id}}).then(function(){
         res.redirect('/');
     }).catch(function(error){
         res.send("Error: " + error);

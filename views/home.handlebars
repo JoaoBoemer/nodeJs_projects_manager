@@ -1,3 +1,24 @@
+<section>
+  <div class="container" id="cadastro_projeto">
+    <h1 class="mt-4">Cadastro de projetos</h1>
+    <form action="project/add" method="post">
+      <div class="mb-3">
+        <label for="projectName" class="form-label">Nome do projeto</label>
+        <input type="text" class="form-control" id="projectName" name="projectName" required>
+      </div>
+      <div class="mb-3">
+        <label for="date_from" class="form-label">Data inicial</label>
+        <input type="date" class="form-control" id="date_from" name="date_from" required>
+      </div>
+      <div class="mb-3">
+        <label for="date_to" class="form-label">Data final</label>
+        <input type="date" class="form-control" id="date_to" name="date_to" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</section>
+  {{#if projects}}
   <section>
     <div class="container mt-4">
       <h1 class="text-center" id="projetos">Projetos cadastrados</h1>
@@ -13,7 +34,7 @@
               <th>Atrasado</th>
             </tr>
           </thead>
-  {{#each posts}}
+  {{#each projects}}
           <tbody>
             <tr>
               <td>{{id}}</td>
@@ -21,7 +42,7 @@
               <td>{{date_to}}</td>
               <td>{{date_from}}</td>
               <td>{{done}}</td>
-              <td>{{late}}</td>
+              <td>{{#if late}} Sim {{else}} Não {{/if}}</td>
               <td><a href="/project/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>
             </tr>
           </tbody>
@@ -30,93 +51,70 @@
       </div>
     </div>
   </section>
-  <section>
-    <div class="container" id="cadastro_projeto">
-      <h1 class="mt-4">Cadastro de projetos</h1>
-      <form action="project/add" method="post">
-        <div class="mb-3">
-          <label for="projectName" class="form-label">Nome do projeto</label>
-          <input type="text" class="form-control" id="projectName" name="projectName" required>
-        </div>
-        <div class="mb-3">
-          <label for="date_from" class="form-label">Data inicial</label>
-          <input type="date" class="form-control" id="date_from" name="date_from" required>
-        </div>
-        <div class="mb-3">
-          <label for="date_to" class="form-label">Data final</label>
-          <input type="date" class="form-control" id="date_to" name="date_to" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </section>
-  <section>
-    <div class="container">
-      <h1 class="text-center" id="atividades"> Atividades cadastradas</h1>
-      <div class="table-responsive mt-4">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID do projeto</th>
-              <th>Nome das atividades</th>
-              <th>Data inicial</th>
-              <th>Data final</th>
-              <th>% Completo</th>
-              <th>Atrasada</th>
-              <th>Finalizada</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Atividade_1</td>
-              <td>01/01/2002</td>
-              <td>15/12/2021</td>
-              <td>50%</td>
-              <td>Sim</td>
-              <td>Nao</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Atividade_2</td>
-              <td>02/02/2015</td>
-              <td>12/10/2025</td>
-              <td>100%</td>
-              <td>Sim</td>
-              <td>Sim</td>
-            </tr>
-          </tbody>
-        </table>
+{{/if}}
+<section>
+  <div class="container">
+    <h1 class="mt-4" id="cadastro_atividade">Cadastro de atividades</h1>
+    <form action="/activity/add" method="post">
+      <div class="mb-3">
+        <label for="projectSelect" class="form-label">Projeto</label>
+        <select class="form-select" name="projectId" required>
+          {{#each projects}}
+          <option> {{id}}</option>
+          {{/each}}
+        </select>
       </div>
+      <div class="mb-3">
+        <label for="activityName" class="form-label">Nome da atividade</label>
+        <input type="text" class="form-control" id="activityName" name="activityName" required>
+      </div>
+      <div class="mb-3">
+        <label for="initialActivityDate" class="form-label">Data inicial da atividade</label>
+        <input type="date" class="form-control" id="initialActivityDate" name="date_from" required>
+      </div>
+      <div class="mb-3">
+        <label for="finalActivityDate" class="form-label">Data final da atividade</label>
+        <input type="date" class="form-control" id="finalActivityDate" name="date_to" required>
+      </div>
+      <div class="mb-3">
+        <label for="completed" class="form-label">% Completa</label>
+        <input type="number" min="0" max="1" class="form-control" id="completed" name="completed" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</section>
+{{#if activities}}
+<section>
+  <div class="container">
+    <h1 class="text-center" id="atividades"> Atividades cadastradas</h1>
+    <div class="table-responsive mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID do projeto</th>
+            <th>Nome das atividades</th>
+            <th>Data inicial</th>
+            <th>Data final</th>
+            <th>Atrasada</th>
+            <th>Finalizada</th>
+          </tr>
+        </thead>
+        {{#each activities}}
+        <tbody>
+          <tr>
+            <td>{{projectId}}</td>
+            <td>{{name}}</td>
+            <td>{{date_to}}</td>
+            <td>{{date_from}}</td>
+            <td>{{#if late}}Sim{{else}}Não{{/if}}</td>
+            <td>{{#if finished}}Sim{{else}}Não{{/if}}</td>
+              <td><a href="/activity/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>
+          </tr>
+        </tbody>
+        {{/each}}
+      </table>
     </div>
-  </section>
-  <section>
-    <div class="container">
-      <h1 class="mt-4" id="cadastro_atividade">Cadastro de atividades</h1>
-      <form action="/test" method="get">
-        <div class="mb-3">
-          <label for="projectSelect" class="form-label">Projeto</label>
-          <select class="form-select" required>
-            <option selected>NULL_IF_NO_PROJECT</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="activityName" class="form-label">Nome da atividade</label>
-          <input type="text" class="form-control" id="activityName" required>
-        </div>
-        <div class="mb-3">
-          <label for="initialActivityDate" class="form-label">Data inicial da atividade</label>
-          <input type="date" class="form-control" id="initialActivityDate" required>
-        </div>
-        <div class="mb-3">
-          <label for="finalActivityDate" class="form-label">Data final da atividade</label>
-          <input type="date" class="form-control" id="finalActivityDate" required>
-        </div>
-        <div class="mb-3">
-          <label for="completed" class="form-label">% Completa</label>
-          <input type="number" min="0" max="100" class="form-control" id="completed" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </section>
+  </div>
+</section>
+{{/if}}

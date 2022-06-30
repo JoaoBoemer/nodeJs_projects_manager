@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const Projects = require('./app/models/Posts');
 const bodyParser = require('body-parser');
 const { engine } = require('express-handlebars');
 const router = require('./routes/index')
@@ -20,6 +19,7 @@ app.set('view engine', 'handlebars');
 app.use('/', router);
 app.use('/projects/add', router);
 app.use('/project/:id', router);
+app.use('/activity/add', router);
 
 
 const PORT = 8080;

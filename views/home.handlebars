@@ -14,43 +14,47 @@
         <label for="date_to" class="form-label">Data final</label>
         <input type="date" class="form-control" id="date_to" name="date_to" required>
       </div>
+      <div class="mb-3">
+        <label for="date_to" class="form-label">% Completa</label>
+        <input type="number" class="form-control" min="0" max="100" id="done" name="done" required>
+      </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </section>
-  {{#if projects}}
-  <section>
-    <div class="container mt-4">
-      <h1 class="text-center" id="projetos">Projetos cadastrados</h1>
-      <div class="table-responsive mt-4">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome dos projetos</th>
-              <th>Data inicial</th>
-              <th>Data final</th>
-              <th>%Completo</th>
-              <th>Atrasado</th>
-            </tr>
-          </thead>
-  {{#each projects}}
-          <tbody>
-            <tr>
-              <td>{{id}}</td>
-              <td>{{name}}</td>
-              <td>{{date_to}}</td>
-              <td>{{date_from}}</td>
-              <td>{{done}}</td>
-              <td>{{#if late}} Sim {{else}} Não {{/if}}</td>
-              <td><a href="/project/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>
-            </tr>
-          </tbody>
-  {{/each}}
-          </table>
-      </div>
+{{#if projects}}
+<section>
+  <div class="container mt-4">
+    <h1 class="text-center" id="projetos">Projetos cadastrados</h1>
+    <div class="table-responsive mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome dos projetos</th>
+            <th>Data inicial</th>
+            <th>Data final</th>
+            <th>Completo</th>
+            <th>Atrasado</th>
+          </tr>
+        </thead>
+{{#each projects}}
+        <tbody>
+          <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{date_to}}</td>
+            <td>{{date_from}}</td>
+            <td>{{done}}%</td>
+            <td>{{#if late}} Sim {{else}} Não {{/if}}</td>
+            <td><a href="/project/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>
+          </tr>
+        </tbody>
+{{/each}}
+        </table>
     </div>
-  </section>
+  </div>
+</section>
 {{/if}}
 <section>
   <div class="container">
@@ -77,8 +81,10 @@
         <input type="date" class="form-control" id="finalActivityDate" name="date_to" required>
       </div>
       <div class="mb-3">
-        <label for="completed" class="form-label">% Completa</label>
-        <input type="number" min="0" max="1" class="form-control" id="completed" name="completed" required>
+        <input class="form-check-input" type="checkbox" name="finished">
+        <label class="form-check-label" for="inlineCheckbox1">Terminado</label>
+        <input class="form-check-input" type="checkbox" name="late">
+        <label class="form-check-label" for="inlineCheckbox1">Atrasado</label>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

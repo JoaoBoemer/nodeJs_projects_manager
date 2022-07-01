@@ -15,7 +15,7 @@ const Activity = db.sequelize.define('activities', {
     date_to: db.Sequelize.DATE,
     date_from: db.Sequelize.DATE,
     late: db.Sequelize.BOOLEAN,
-    finished: db.Sequelize.BOOLEAN,
+    finished: db.Sequelize.BOOLEAN
 }, {
     timestamps: false
 })

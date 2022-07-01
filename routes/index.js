@@ -22,7 +22,7 @@ router.post('/project/add', (req,res) => {
         name: req.body.projectName,
         date_from: req.body.date_from,
         date_to: req.body.date_to,
-        done: 5,
+        done: req.body.done,
         late: 0
     }).then(function(){
         res.redirect('/');
@@ -32,22 +32,41 @@ router.post('/project/add', (req,res) => {
 })
 
 router.get('/project/:id', (req, res) => {
-    Post.Projects.destroy({where: {'id': req.params.id}}).then(function(){
-        res.redirect('/');
-    }).catch(function(error){
-        res.send("Error: " + error);
+    Post.Activity.findOne({where: {'projectId': req.params.id}}).then(function(project){
+        if(project == null){
+            Post.Projects.destroy({where: {'id': req.params.id}}).then(function(){
+                res.redirect('/');
+            }).catch(function(error){
+                res.send("Error: " + error);
+            })
+        } else {
+            res.redirect('/');
+        }
     })
 })
 
 router.post('/activity/add', (req,res) => {
+    var late = 0, finished = 0;
+    if(req.body.finished){
+        finished = 1;
+    }else{
+        finished = 0;
+    }
+    if(req.body.late){
+        late = 1;
+    }else{
+        late = 0;
+    }
     Post.Activity.create({
         name: req.body.activityName,
         date_from: req.body.date_from,
         date_to: req.body.date_to,
         projectId: req.body.projectId,
-        finished: req.body.finished,
-        late: 0
-    }).then(function(error){
+        finished: finished,
+        late: late,
+    }).then(function(){
+        res.redirect('/');
+    }).catch(function(error){
         res.send("Error: " + error);
     })
 })

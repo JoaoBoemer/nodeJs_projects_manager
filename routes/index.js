@@ -7,28 +7,25 @@ router.get('/', (req, res) => {
         Post.Activity.findAll().then(function(activities){
             res.render('home', {projects: projects, activities: activities})
         })
-        //res.render('home', {projects: projects});
     })
 })
-/*
-router.get('/teste', (req,res) => {
-    Post.Activity.findAll().then(function(posts){
-        res.render('home', {posts: posts});
-    })
-})
-*/
+
 router.post('/project/add', (req,res) => {
-    Post.Projects.create({
-        name: req.body.projectName,
-        date_from: req.body.date_from,
-        date_to: req.body.date_to,
-        done: req.body.done,
-        late: 0
-    }).then(function(){
-        res.redirect('/');
-    }).catch(function(error){
-        res.send("Error: " + error);
-    })
+    if(req.body.date_to < req.body.date_from){
+        //Alert
+    } else {
+        Post.Projects.create({
+            name: req.body.projectName,
+            date_from: req.body.date_from,
+            date_to: req.body.date_to,
+            done: req.body.done,
+            late: 0
+        }).then(function(){
+            res.redirect('/');
+        }).catch(function(error){
+            res.send("Error: " + error);
+        })
+    }
 })
 
 router.get('/project/:id', (req, res) => {

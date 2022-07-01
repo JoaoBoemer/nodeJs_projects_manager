@@ -1,3 +1,7 @@
+{{#if message}}
+<div class="alert alert-danger">{{message}}</div>
+{{/if}}
+
 <section>
   <div class="container" id="cadastro_projeto">
     <h1 class="mt-4">Cadastro de projetos</h1>
@@ -43,8 +47,8 @@
           <tr>
             <td>{{id}}</td>
             <td>{{name}}</td>
-            <td>{{date_to}}</td>
             <td>{{date_from}}</td>
+            <td>{{date_to}}</td>
             <td>{{done}}%</td>
             <td>{{#if late}} Sim {{else}} Não {{/if}}</td>
             <td><a href="/project/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>
@@ -57,7 +61,7 @@
 </section>
 {{/if}}
 <section>
-  <div class="container">
+  <div class="container" id="cadastro_atividade">
     <h1 class="mt-4" id="cadastro_atividade">Cadastro de atividades</h1>
     <form action="/activity/add" method="post">
       <div class="mb-3">
@@ -111,8 +115,8 @@
           <tr>
             <td>{{projectId}}</td>
             <td>{{name}}</td>
-            <td>{{date_to}}</td>
             <td>{{date_from}}</td>
+            <td>{{date_to}}</td>
             <td>{{#if late}}Sim{{else}}Não{{/if}}</td>
             <td>{{#if finished}}Sim{{else}}Não{{/if}}</td>
               <td><a href="/activity/{{id}}"><button type="submit" class="btn btn-primary">Deletar</button></a></td>

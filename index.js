@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const { engine } = require('express-handlebars');
 const router = require('./routes/index')
 
+//Public folder
+app.use(express.static(__dirname+'/public'));
 //BodyParser
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -17,9 +19,6 @@ runtimeOptions: {
 app.set('view engine', 'handlebars');
 /// Rotas
 app.use('/', router);
-app.use('/projects/add', router);
-app.use('/project/:id', router);
-app.use('/activity/add', router);
 
 
 const PORT = 8080;

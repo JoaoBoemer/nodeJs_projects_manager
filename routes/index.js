@@ -1,18 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../app/models/Posts')
+const notifier = require('node-notifier');
 
 router.get('/', (req, res) => {
     Post.Projects.findAll().then(function(projects){
         Post.Activity.findAll().then(function(activities){
-            res.render('home', {projects: projects, activities: activities})
+            if(teste){
+                res.status(200).render('home', {projects: projects, activities: activities})
+            } else { 
+                res.status(200).render('home', {projects: projects, activities: activities})
+            }
+            var teste = false;
         })
     })
 })
 
 router.post('/project/add', (req,res) => {
     if(req.body.date_to < req.body.date_from){
-        //Alert
+        notifier.notify('Data inicial nao pode ser menor que data final')
+        res.redirect('/');
     } else {
         Post.Projects.create({
             name: req.body.projectName,
@@ -43,29 +50,34 @@ router.get('/project/:id', (req, res) => {
 })
 
 router.post('/activity/add', (req,res) => {
-    var late = 0, finished = 0;
-    if(req.body.finished){
-        finished = 1;
-    }else{
-        finished = 0;
-    }
-    if(req.body.late){
-        late = 1;
-    }else{
-        late = 0;
-    }
-    Post.Activity.create({
-        name: req.body.activityName,
-        date_from: req.body.date_from,
-        date_to: req.body.date_to,
-        projectId: req.body.projectId,
-        finished: finished,
-        late: late,
-    }).then(function(){
+    if(req.body.date_to < req.body.date_from){
+        notifier.notify('Data inicial nao pode ser menor que data final')
         res.redirect('/');
-    }).catch(function(error){
-        res.send("Error: " + error);
-    })
+    } else { 
+        var late = 0, finished = 0;
+        if(req.body.finished){
+            finished = 1;
+        }else{
+            finished = 0;
+        }
+        if(req.body.late){
+            late = 1;
+        }else{
+            late = 0;
+        }
+        Post.Activity.create({
+            name: req.body.activityName,
+            date_from: req.body.date_from,
+            date_to: req.body.date_to,
+            projectId: req.body.projectId,
+            finished: finished,
+            late: late,
+        }).then(function(){
+            res.redirect('/');
+        }).catch(function(error){
+            res.send("Error: " + error);
+        })
+    }
 })
 
 router.get('/activity/:id', (req, res) => {

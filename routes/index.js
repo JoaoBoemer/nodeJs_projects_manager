@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../app/models/Posts')
 const notifier = require('node-notifier');
+const { on } = require('node-notifier');
 
 router.get('/', (req, res) => {
     Post.Projects.findAll().then(function(projects){
@@ -21,12 +22,18 @@ router.post('/project/add', (req,res) => {
         notifier.notify('Data inicial nao pode ser menor que data final')
         res.redirect('/');
     } else {
+        var late = 0;
+        if(req.body.late){
+            late = 0;
+        }else{
+            late = 1;
+        }
         Post.Projects.create({
             name: req.body.projectName,
             date_from: req.body.date_from,
             date_to: req.body.date_to,
             done: req.body.done,
-            late: 0
+            late: late
         }).then(function(){
             res.redirect('/');
         }).catch(function(error){

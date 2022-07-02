@@ -1,15 +1,30 @@
 const Post = require('../app/models/Posts')
 const notifier = require('node-notifier');
+const { sequelize } = require('../app/models/db');
 
 const home = (req, res) => {
-    Post.Projects.findAll().then(function(projects){
-        Post.Activity.findAll().then(function(activities){
-            if(teste){
-                res.status(200).render('home', {projects: projects, activities: activities})
-            } else {
-                res.status(200).render('home', {projects: projects, activities: activities})
-            }
-            var teste = false;
+    Post.Projects.findAll({
+        attributes: [
+            'id',
+            'name',
+            [sequelize.fn('date_format', sequelize.col('date_to'), '%Y-%m-%d'), 'date_to'],
+            [sequelize.fn('date_format', sequelize.col('date_from'), '%Y-%m-%d'), 'date_from'],
+            'late',
+            'done'
+        ]
+    }).then(function(projects){
+        Post.Activity.findAll({
+            attributes: [
+                'id',
+                'name',
+                [sequelize.fn('date_format', sequelize.col('date_to'), '%Y-%m-%d'), 'date_to'],
+                [sequelize.fn('date_format', sequelize.col('date_from'), '%Y-%m-%d'), 'date_from'],
+                'late',
+                'finished',
+                'projectId'
+            ]
+        }).then(function(activities){
+            res.status(200).render('home', {projects: projects, activities: activities})
         })
     })
 }

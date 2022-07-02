@@ -34,7 +34,7 @@ const projectAdd = (req, res) => {
         }).then(function(){
             res.redirect('/');
         }).catch(function(error){
-            res.send("Error: " + error);
+            res.status(400).send("Error: " + error);
         })
     }
 }
@@ -80,7 +80,7 @@ const activityAdd = (req, res) => {
         }).then(function(){
             res.redirect('/');
         }).catch(function(error){
-            res.send("Error: " + error);
+            res.status(400).send("Error: " + error);
         })
     }
 }
@@ -89,7 +89,7 @@ const activityDestroy = (req, res) => {
     Post.Activity.destroy({where: {'id': req.params.id}}).then(function(){
         res.redirect('/');
     }).catch(function(error){
-        res.send("Error: " + error);
+        res.status(400).send("Error: " + error);
     })
 }
 

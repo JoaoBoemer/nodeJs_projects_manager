@@ -36,16 +36,16 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 
 Caso já tenha conectado o banco de dados e deseje criar as tabelas você pode utilizar os comandos
 
-'''bash
+```bash
 cd app/models
 create.js
-'''
+```
 
 ## Executar o código
 
-'''bash
+```bash
 npm run start
-'''
+```
 
 Utilizando Docker:
 

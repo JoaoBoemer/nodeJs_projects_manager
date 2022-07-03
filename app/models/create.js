@@ -20,5 +20,18 @@ const Activity = db.sequelize.define('activities', {
     timestamps: false
 })
 
-exports.Projects = Project;
-exports.Activity = Activity;
+const Usuarios = db.sequelize.define('usuarios', {
+    nome: {
+        type: db.Sequelize.STRING
+    },
+    idade: {
+        type: db.Sequelize.INTEGER
+    }
+})
+
+
+
+Project.hasMany(Activity);
+Activity.belongsTo(Project);
+Project.sync({})
+Activity.sync({})

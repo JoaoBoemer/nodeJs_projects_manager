@@ -20,5 +20,7 @@ const Activity = db.sequelize.define('activities', {
     timestamps: false
 })
 
+Project.hasMany(Activity);
+Activity.belongsTo(Project);
 exports.Projects = Project;
 exports.Activity = Activity;

@@ -38,10 +38,12 @@ Caso já tenha conectado o banco de dados e deseje criar as tabelas você pode u
 
 ```bash
 cd app/models
-create.js
+node create.js
 ```
 
 ## Executar o código
+
+Na pasta da instalação execute o comando:
 
 ```bash
 npm run start

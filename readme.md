@@ -34,9 +34,12 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 
 ## Para criar as tabelas:
 
-Entre em app/models/
+Caso já tenha conectado o banco de dados e deseje criar as tabelas você pode utilizar os comandos
 
-Rode o comando node create.js
+'''bash
+cd app/models
+create.js
+'''
 
 ## Executar o código
 

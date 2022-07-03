@@ -1,7 +1,7 @@
 {{#if projects}}
 <section>
-  <div class="container mt-4">
-    <h1 class="text-center" id="projetos">Projetos cadastrados</h1>
+  <div class="container mt-4" id="projetos">
+    <h1 class="text-center">Projetos cadastrados</h1>
     <div class="table-responsive mt-4">
       <table class="table">
         <thead>
@@ -36,8 +36,8 @@
 
 {{#if activities}}
 <section>
-  <div class="container">
-    <h1 class="text-center" id="atividades"> Atividades cadastradas</h1>
+  <div class="container mt-4" id="atividades">
+    <h1 class="text-center"> Atividades cadastradas</h1>
     <div class="table-responsive mt-4">
       <table class="table">
         <thead>
@@ -71,7 +71,7 @@
 {{/if}}
 
 <section>
-  <div class="container" id="cadastro_projeto">
+  <div class="container mt-4" id="cadastro_projeto">
     <h1 class="mt-4">Cadastro de projetos</h1>
     <form action="project/add" method="post">
       <div class="mb-3">
@@ -100,8 +100,8 @@
 </section>
 
 <section>
-  <div class="container" id="cadastro_atividade">
-    <h1 class="mt-4" id="cadastro_atividade">Cadastro de atividades</h1>
+  <div class="container mt-4" id="cadastro_atividade">
+    <h1 class="mt-4">Cadastro de atividades</h1>
     <form action="/activity/add" method="post">
       <div class="mb-3">
         <label for="projectSelect" class="form-label">Projeto</label>

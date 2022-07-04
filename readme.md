@@ -49,6 +49,4 @@ Na pasta da instalação execute o comando:
 npm run start
 ```
 
-Utilizando Docker:
-
-docker pull jgcbitj/project-manager-docker:project-manager-docker
+## Em breve ~~Utilizando Docker~~:
